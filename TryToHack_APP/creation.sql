@@ -1,8 +1,13 @@
-DROP TABLE users CASCADE;
+-- DROP TABLE users CASCADE;
 CREATE TABLE users (
-userID numeric(3) check(userID > 0),
-username varchar(20) NOT NULL,
-password varchar(100) NOT NULL,
+    userID SERIAL PRIMARY KEY,
+    nom varchar(255) NOT NULL,
+    prenom varchar(255) NOT NULL,
+    username varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    adresse varchar(255),
+    codepostal varchar(6)
+);
 
-PRIMARY KEY (userID));
-
+INSERT INTO users (nom, prenom, username, password, adresse, codepostal)
+VALUES ('Boisvert','Kevin','Kevin','qwerty', '123 rue Université Sherbrooke','A1A1A1');

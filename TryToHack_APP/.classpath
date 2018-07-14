@@ -4,11 +4,6 @@
 	<classpathentry kind="src" path="WEB-INF/src"/>
 	<classpathentry kind="src" output="work" path="work"/>
 	<classpathentry exported="true" kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/code/TryToHack_APP/WEB-INF/lib/postgresql-9.4.1208.jar"/>
-	<classpathentry exported="true" kind="var" path="TOMCAT_HOME/lib/servlet-api.jar"/>
-	<classpathentry exported="true" kind="var" path="TOMCAT_HOME/lib/jasper.jar"/>
-	<classpathentry exported="true" kind="var" path="TOMCAT_HOME/lib/jsp-api.jar"/>
-	<classpathentry exported="true" kind="var" path="TOMCAT_HOME/lib/el-api.jar"/>
-	<classpathentry exported="true" kind="var" path="TOMCAT_HOME/lib/annotations-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/apache-tomcat-9.0.1/lib/annotations-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/apache-tomcat-9.0.1/lib/catalina-ant.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/apache-tomcat-9.0.1/lib/catalina-ha.jar"/>
@@ -35,5 +30,10 @@
 	<classpathentry exported="true" kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/apache-tomcat-9.0.1/lib/tomcat-websocket.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/apache-tomcat-9.0.1/lib/websocket-api.jar"/>
 	<classpathentry kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/code/TryToHack_APP/postgresql-42.2.2.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/servlet-api.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/jasper.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/jsp-api.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/el-api.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/annotations-api.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

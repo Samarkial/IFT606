@@ -60,7 +60,7 @@
 		<div>
 			<p style="text-align:right; margin:0px -25px 0 0; padding:10px; font-size:24px;"><a style="color:#6A6D70;" href="Login"><i class="fa fa-times"></i></a></p>
 			<h2>Sign up</h2>
-			<form ACTION="Login" METHOD="POST">
+			<form ACTION="Register" METHOD="POST">
 
 				<p style="width:49%; float:left;">Nom</p>
 			    <p style="width:49%; float:right;">Prénom</p>
@@ -74,26 +74,19 @@
 
 			    <p style="width:49%; float:left;">Password</p>
 			    <p style="width:49%; float:right;">Confirm password</p>
-			    <input style="width:49%; float:left;" TYPE="PASSWORD" NAME="password">
-			    <input style="width:49%; float:right;" TYPE="PASSWORD" NAME="password_cofirm">
+			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="password">
+			    <input style="width:49%; float:right;" TYPE="TEXT" NAME="password_confirm">
 			    
 			    <!-- <p style="width:49%; float:left;">Address</p>
 			    <p style="width:49%; float:right;">Postal code</p>
-			    <input style="width:49%; float:left;" TYPE="PASSWORD" NAME="address">
-			    <input style="width:49%; float:right;" TYPE="PASSWORD" NAME="postal_code"> -->
+			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="address">
+			    <input style="width:49%; float:right;" TYPE="TEXT" NAME="codepostal"> -->
 
-			    <!--  
-			    <p>Serveur</p>
-			    <select NAME="serveur">
-	    				<option VALUE="dinf">dinf
-	                <option VALUE="local">local
-			    </select>
-			    
-			    <p>BD</p>
-			    <input TYPE="TEXT" NAME="bd"  VALUE="ift287_31db">
-				-->
 				<input id="submit_btn" type="submit" name="signup" value="Sign up" style="background-color:black; color:white; border:0; font-size:14px; margin-top:15px;">
+			
+				<jsp:include page="/WEB-INF/messageErreur.jsp" />
 			</form>
+			
 			<!--<p style="text-align:center; font-size:10px; margin-top:25px;"><i class="fa fa-lock"></i><span> Version sécurisé</span></p>
 			 <jsp:include page="/WEB-INF/messageErreur.jsp" />
 			<%= DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, Locale.CANADA_FRENCH).format(new java.util.Date()) %> -->

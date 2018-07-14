@@ -6,7 +6,7 @@ public class Connexion
 {
     private Connection conn;
 
-    public Connexion(String user, String pass) throws TryToHackException, SQLException
+    public Connexion() throws TryToHackException, SQLException
     {
         Driver d;
         try
@@ -16,7 +16,7 @@ public class Connexion
 
             DriverManager.registerDriver(d);
             
-            conn = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/trytohack", user, pass);
+            conn = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/trytohack", "Kevin", "qwertyui");
 
             conn.setAutoCommit(false);
 
@@ -24,11 +24,11 @@ public class Connexion
             if (dbmd.supportsTransactionIsolationLevel(Connection.TRANSACTION_SERIALIZABLE))
             {
                 conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-                System.out.println("Ouverture de la connexion en mode sérialisable :\n" + "Estampille " + System.currentTimeMillis() + " " + conn);
+                //System.out.println("Ouverture de la connexion en mode sérialisable :\n" + "Estampille " + System.currentTimeMillis() + " " + conn);
             }
             else
             {
-                System.out.println("Ouverture de la connexion en mode read committed (default) :\n" + "Heure " + System.currentTimeMillis() + " " + conn);
+                //System.out.println("Ouverture de la connexion en mode read committed (default) :\n" + "Heure " + System.currentTimeMillis() + " " + conn);
             }
         }catch (SQLException e){
             throw e;

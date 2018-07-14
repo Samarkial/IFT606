@@ -5,17 +5,15 @@ import java.sql.*;
 public class GestionApplication
 {
     private Connexion cx;
-    private TableMembres membre;
-    private GestionMembre gestionMembre;
+    private TableUsers user;
+    private GestionUser gestionUser;
     private GestionInterrogation gestionInterrogation;
 
-    public GestionApplication(String user, String password)
-            throws TryToHackException, SQLException
+    public GestionApplication() throws TryToHackException, SQLException
     {
-        // allocation des objets pour le traitement des transactions
-        cx = new Connexion(user, password);
-        //membre = new TableMembres(getConnexion());
-        //setGestionMembre(new GestionMembre(membre));
+        cx = new Connexion();
+        user = new TableUsers(getConnexion());
+        setGestionUser(new GestionUser(user));
         setGestionInterrogation(new GestionInterrogation(getConnexion()));
     }
 
@@ -29,14 +27,14 @@ public class GestionApplication
 		return cx;
 	}
 
-    public GestionMembre getGestionMembre()
+    public GestionUser getGestionUser()
     {
-        return gestionMembre;
+        return gestionUser;
     }
 
-    private void setGestionMembre(GestionMembre gestionMembre)
+    private void setGestionUser(GestionUser gestionUser)
     {
-        this.gestionMembre = gestionMembre;
+        this.gestionUser = gestionUser;
     }
 
     public GestionInterrogation getGestionInterrogation()

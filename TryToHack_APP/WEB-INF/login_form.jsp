@@ -70,19 +70,19 @@
 		<div>
 			<h2>Sign in</h2>
 			<form ACTION="Login" METHOD="POST">
-
 			    <p>Username</p>
 			    <input TYPE="TEXT" NAME="username" autofocus>
 
 			    <p>Password</p>
-			    <input TYPE="PASSWORD" NAME="password">
+			    <input TYPE="TEXT" NAME="password">
 
 				<input id="submit_btn" type="submit" name="signin" value="Sign in" style="background-color:black; color:white; border:0; font-size:14px; margin-top:15px;">
 				<input id="signup_btn" type="submit" name="signup" value="Sign up" />			
 			</form>
-			<p style="text-align:center; font-size:10px; margin-top:25px;"><i class="fa fa-lock"></i><span> Version sécurisé</span></p>
-			<!-- <jsp:include page="/WEB-INF/messageErreur.jsp" />
-			<%= DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, Locale.CANADA_FRENCH).format(new java.util.Date()) %> -->
+			<p style="text-align:center; font-size:10px; margin-top:25px;"><i class="fa fa-unlock"></i><span> Version non sécurisé</span></p>
+			
+			<jsp:include page="/WEB-INF/messageErreur.jsp" />
+			<!-- <%= DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, Locale.CANADA_FRENCH).format(new java.util.Date()) %> -->
 		</div>
 	</div>
 
