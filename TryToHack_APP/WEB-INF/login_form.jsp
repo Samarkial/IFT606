@@ -24,12 +24,6 @@
 				width:225px;
 			}
 			
-			.login_wrapper div h2{
-				text-align:center;
-				font-weight:400;
-				padding-bottom:15px;
-			}
-			
 			.login_wrapper div p {
 				color:#6A6D70;
 				font-size:12px;
@@ -51,6 +45,7 @@
 			
 			#submit_btn:hover{
 				opacity:0.8;
+				text-decoration: underline;
 			}
 			
 			#signup_btn{
@@ -61,6 +56,7 @@
 			
 			#signup_btn:hover{
 				opacity:0.8;
+				text-decoration: underline;
 			}
 			
 		</style>

@@ -23,12 +23,11 @@
 				border-radius:10px;
 				padding:0 25px 10px 25px;
 				width:500px;
+				box-shadow: 0 0 12px 0 rgba(0,0,0,0.1), 0 10px 30px 0 rgba(0,0,0,0.5);
 			}
 			
 			.register_wrapper div h2{
 				text-align:center;
-				font-weight:400;
-				padding-bottom:15px;
 			}
 			
 			.register_wrapper div p {
@@ -52,28 +51,34 @@
 			
 			#submit_btn:hover{
 				opacity:0.8;
+				text-decoration: underline;
 			}
+			
+			.goBack:hover{
+				text-decoration: underline;
+			}
+			
 		</style>
 	</head>
 	
 	<div class="register_wrapper">
 		<div>
-			<p style="text-align:right; margin:0px -25px 0 0; padding:10px; font-size:24px;"><a style="color:#6A6D70;" href="Login"><i class="fa fa-times"></i></a></p>
+			<p class="goBack" style="display:inline-block; text-align:left; margin:0 0 0 -25px; padding:10px; font-size:12px;"><a style="color:#6A6D70; text-decoration:none;" href="Login"><i style="padding-right:5px;" class="fa fa-arrow-left"></i>Back</a></p>
 			<h2>Sign up</h2>
 			<form ACTION="Register" METHOD="POST">
 
-				<p style="width:49%; float:left;">Nom</p>
-			    <p style="width:49%; float:right;">Prénom</p>
+				<p style="width:49%; float:left;">Nom*</p>
+			    <p style="width:49%; float:right;">Prénom*</p>
 			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="nom" autofocus>
 				<input style="width:49%; float:right;" TYPE="TEXT" NAME="prenom">
 
-			    <p style="width:49%; float:left;">Username</p>
-			    <p style="width:49%; float:right;">Email</p>
+			    <p style="width:49%; float:left;">Username*</p>
+			    <p style="width:49%; float:right;">Email*</p>
 			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="username">
 				<input style="width:49%; float:right;" TYPE="TEXT" NAME="email">
 
-			    <p style="width:49%; float:left;">Password</p>
-			    <p style="width:49%; float:right;">Confirm password</p>
+			    <p style="width:49%; float:left;">Password*</p>
+			    <p style="width:49%; float:right;">Confirm password*</p>
 			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="password">
 			    <input style="width:49%; float:right;" TYPE="TEXT" NAME="password_confirm">
 			    

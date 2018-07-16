@@ -45,6 +45,7 @@
 			
 			.login_wrapper div{
 				background-color:white;
+				box-shadow: 0 0 12px 0 rgba(0,0,0,0.1), 0 10px 30px 0 rgba(0,0,0,0.5);
 				border-radius:10px;
 				padding:25px;
 				width:225px;
@@ -52,7 +53,6 @@
 			
 			.login_wrapper div h2{
 				text-align:center;
-				font-weight:400;
 				padding-bottom:15px;
 			}
 			
