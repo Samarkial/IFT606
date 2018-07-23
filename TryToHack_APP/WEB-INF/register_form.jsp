@@ -65,6 +65,7 @@
 		<div>
 			<p class="goBack" style="display:inline-block; text-align:left; margin:0 0 0 -25px; padding:10px; font-size:12px;"><a style="color:#6A6D70; text-decoration:none;" href="Login"><i style="padding-right:5px;" class="fa fa-arrow-left"></i>Back</a></p>
 			<h2>Sign up</h2>
+			<jsp:include page="/WEB-INF/messageErreur.jsp" />
 			<form ACTION="Register" METHOD="POST">
 
 				<p style="width:49%; float:left;">Nom*</p>
@@ -89,7 +90,7 @@
 
 				<input id="submit_btn" type="submit" name="signup" value="Sign up" style="background-color:black; color:white; border:0; font-size:14px; margin-top:15px;">
 			
-				<jsp:include page="/WEB-INF/messageErreur.jsp" />
+				
 			</form>
 			
 			<!--<p style="text-align:center; font-size:10px; margin-top:25px;"><i class="fa fa-lock"></i><span> Version sécurisé</span></p>

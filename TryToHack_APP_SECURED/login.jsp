@@ -24,6 +24,8 @@
 				margin-left:5px;
 				text-shadow: 0 1px 4px rgba(0,0,0,1);
 				font-size:22px;
+				display:inline;
+				margin:0 auto;
 			}
 		
 			.login_wrapper{
@@ -104,7 +106,9 @@
 			</ul>
 		</div> -->
 		
-		<h1>Try to hack</h1>
+		<h1 style="position:fixed; left:15px; background-color:black; padding:2px 5px;">Try to hack</h1>
+		<h1 style="text-align:center; position:fixed; left:0; right:0; top:15px; font-size:16px;"><i class="fa fa-lock"></i><span> Version sécurisé</span></h1>
+			 
 		<%
   			if (request.getAttribute("isRegistering") == "true"){
 		%>

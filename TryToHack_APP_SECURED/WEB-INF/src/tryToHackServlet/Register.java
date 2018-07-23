@@ -2,6 +2,7 @@ package tryToHackServlet;
 
 import java.util.*;
 import java.io.*;
+import java.security.MessageDigest;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,25 +19,49 @@ public class Register extends HttpServlet
     	
 	    	try {
 	        
-	        /*GestionApplication AppInterrogation = new GestionApplication();
-            AppInterrogation.getConnexion().setIsolationReadCommited();
-            session.setAttribute("AppInterrogation", AppInterrogation);
-            
-            GestionApplication AppUpdate = new GestionApplication();
-            session.setAttribute("AppUpdate", AppUpdate);*/
-	
-	        System.out.println("--> Sign up form");
-	      
-	        String nom = request.getParameter("nom");
+	    		String nom = request.getParameter("nom");
 	        String prenom = request.getParameter("prenom");
 	        String username = request.getParameter("username");
-	        String motDePasse = request.getParameter("password");
-	        String motDePasse2 = request.getParameter("password_confirm");
-	        String adresse = request.getParameter("address");
-	        String codepostal = request.getParameter("codepostal");
+            String encryptedPassword = null;
+            String encryptedPassword2 = null;
+            
+	        { // Encryption password
+	            
+	            try {
+
+	                MessageDigest md = MessageDigest.getInstance("MD5");
+	                MessageDigest md2 = MessageDigest.getInstance("MD5");
+	                
+	                md.update(request.getParameter("password").getBytes());
+	                md2.update(request.getParameter("password_confirm").getBytes());
+
+	                byte[] bytes = md.digest();
+	                byte[] bytes2 = md2.digest();
+
+	                StringBuilder sb = new StringBuilder();
+	                for(int i=0; i< bytes.length ;i++)
+	                {
+	                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+	                }
+	                StringBuilder sb2 = new StringBuilder();
+	                for(int i=0; i< bytes2.length ;i++)
+	                {
+	                    sb2.append(Integer.toString((bytes2[i] & 0xff) + 0x100, 16).substring(1));
+	                }
+
+	                encryptedPassword = sb.toString();
+	                encryptedPassword2 = sb2.toString();
+	            }
+	            catch (Exception e)
+	            {
+	                e.printStackTrace();
+	            }
+	            System.out.println("Password encrypted: " + encryptedPassword);
+	            System.out.println("Password confirm encrypted: " + encryptedPassword2);
+	        }
 	        
-	        if(nom != "" && prenom != "" && username != "" && motDePasse != "" && motDePasse2 != "" ) {
-	        		doRegister(nom, prenom, username, motDePasse, motDePasse2, adresse, codepostal, request, response);
+	        if(nom != "" && prenom != "" && username != "" && encryptedPassword != "" && encryptedPassword2 != "" ) {
+	        		doRegister(nom, prenom, username, encryptedPassword, encryptedPassword2, request, response);
 	        } else {
 	        		throw new TryToHackException("");
 	        }
@@ -63,7 +88,7 @@ public class Register extends HttpServlet
         doPost(request, response);
     }
     
-    public void doRegister(String nom, String prenom, String username, String password, String password2, String adresse, String codepostal, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doRegister(String nom, String prenom, String username, String password, String password2, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
 			
@@ -74,8 +99,6 @@ public class Register extends HttpServlet
 	        System.out.println("Username: " + username);
 	        System.out.println("Password: " + password);
 	        System.out.println("Password confrim: " + password2);
-	        System.out.println("Adresse: " + adresse);
-	        System.out.println("Code Postal: " + codepostal);
 	        
 	        if(!password.equals(password2)) {
 	        	
@@ -83,9 +106,8 @@ public class Register extends HttpServlet
 	    			isRegistering = "true";
 	    	        request.setAttribute("isRegistering", isRegistering); 
     	        
-	        		System.out.println("Passwords don't match.");
 	        		List<String> listeMessageErreur = new LinkedList<String>();
-				listeMessageErreur.add("Passwords don't match.");
+				listeMessageErreur.add("The passwords you entered do not match.");
 				request.setAttribute("listeMessageErreur", listeMessageErreur);
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
@@ -98,7 +120,7 @@ public class Register extends HttpServlet
 			boolean res;
 			
 			synchronized (userToRegister) {
-				res = userToRegister.getGestionUser().addUser(nom, prenom, username, password, password2, adresse, codepostal);
+				res = userToRegister.getGestionUser().addUser(nom, prenom, username, password, password2);
 			}
 			
 			if(res) {
@@ -111,8 +133,12 @@ public class Register extends HttpServlet
 
 		} catch (TryToHackException e) {
 			List<String> listeMessageErreur = new LinkedList<String>();
-			listeMessageErreur.add("User wasn't insert.");
+			listeMessageErreur.add("This username address is not available.");
 			request.setAttribute("listeMessageErreur", listeMessageErreur);
+			
+			String isRegistering = new String();
+			isRegistering = "true";
+	        request.setAttribute("isRegistering", isRegistering);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);

@@ -4,10 +4,8 @@ CREATE TABLE users (
     nom varchar(255) NOT NULL,
     prenom varchar(255) NOT NULL,
     username varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    adresse varchar(255),
-    codepostal varchar(6)
+    password varchar(255) NOT NULL
 );
 
-INSERT INTO users (nom, prenom, username, password, adresse, codepostal)
-VALUES ('Boisvert','Kevin','Kevin','qwerty', '123 rue Université Sherbrooke','A1A1A1');
+INSERT INTO users (nom, prenom, username, password)
+VALUES ('Boisvert','Kevin','Kevin','qwerty');

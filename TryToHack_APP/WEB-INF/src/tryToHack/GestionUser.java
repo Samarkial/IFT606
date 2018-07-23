@@ -18,13 +18,15 @@ public class GestionUser
         return this.user.existe(username);
     }
 
-    public boolean addUser(String nom, String prenom, String username, String password, String password2, String adresse, String codepostal) throws SQLException, TryToHackException, Exception
+    public boolean addUser(String nom, String prenom, String username, String password, String password2) throws SQLException, TryToHackException, Exception
     {
         try
         {
-            if (user.existe(username)) throw new TryToHackException("User existe deja.");
+            if (user.existe(username)) {
+            		throw new TryToHackException("Username existe deja.");
+            }
 
-            user.addUser(nom, prenom, username, password, password2, adresse, codepostal);
+            user.addUser(nom, prenom, username, password, password2);
             
             cx.commit();
             
@@ -33,7 +35,7 @@ public class GestionUser
         catch (Exception e)
         {
             cx.rollback();
-            return true;
+            return false;
         }
     }
 

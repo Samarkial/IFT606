@@ -18,25 +18,14 @@ public class Register extends HttpServlet
     	
 	    	try {
 	        
-	        /*GestionApplication AppInterrogation = new GestionApplication();
-            AppInterrogation.getConnexion().setIsolationReadCommited();
-            session.setAttribute("AppInterrogation", AppInterrogation);
-            
-            GestionApplication AppUpdate = new GestionApplication();
-            session.setAttribute("AppUpdate", AppUpdate);*/
-	
-	        System.out.println("--> Sign up form");
-	      
 	        String nom = request.getParameter("nom");
 	        String prenom = request.getParameter("prenom");
 	        String username = request.getParameter("username");
 	        String motDePasse = request.getParameter("password");
 	        String motDePasse2 = request.getParameter("password_confirm");
-	        String adresse = request.getParameter("address");
-	        String codepostal = request.getParameter("codepostal");
 	        
 	        if(nom != "" && prenom != "" && username != "" && motDePasse != "" && motDePasse2 != "" ) {
-	        		doRegister(nom, prenom, username, motDePasse, motDePasse2, adresse, codepostal, request, response);
+	        		doRegister(nom, prenom, username, motDePasse, motDePasse2, request, response);
 	        } else {
 	        		throw new TryToHackException("");
 	        }
@@ -63,7 +52,7 @@ public class Register extends HttpServlet
         doPost(request, response);
     }
     
-    public void doRegister(String nom, String prenom, String username, String password, String password2, String adresse, String codepostal, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doRegister(String nom, String prenom, String username, String password, String password2, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
 			
@@ -74,8 +63,6 @@ public class Register extends HttpServlet
 	        System.out.println("Username: " + username);
 	        System.out.println("Password: " + password);
 	        System.out.println("Password confrim: " + password2);
-	        System.out.println("Adresse: " + adresse);
-	        System.out.println("Code Postal: " + codepostal);
 	        
 	        if(!password.equals(password2)) {
 	        	
@@ -98,7 +85,7 @@ public class Register extends HttpServlet
 			boolean res;
 			
 			synchronized (userToRegister) {
-				res = userToRegister.getGestionUser().addUser(nom, prenom, username, password, password2, adresse, codepostal);
+				res = userToRegister.getGestionUser().addUser(nom, prenom, username, password, password2);
 			}
 			
 			if(res) {
@@ -111,8 +98,12 @@ public class Register extends HttpServlet
 
 		} catch (TryToHackException e) {
 			List<String> listeMessageErreur = new LinkedList<String>();
-			listeMessageErreur.add("User wasn't insert.");
+			listeMessageErreur.add("This username address is not available.");
 			request.setAttribute("listeMessageErreur", listeMessageErreur);
+			
+			String isRegistering = new String();
+			isRegistering = "true";
+	        request.setAttribute("isRegistering", isRegistering);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);

@@ -21,7 +21,7 @@
 				background-color:white;
 				border-radius:10px;
 				padding:25px;
-				width:225px;
+				width:235px;
 			}
 			
 			.login_wrapper div p {
@@ -65,6 +65,7 @@
 	<div class="login_wrapper">
 		<div>
 			<h2>Sign in</h2>
+			<jsp:include page="/WEB-INF/messageErreur.jsp" />
 			<form ACTION="Login" METHOD="POST">
 			    <p>Username</p>
 			    <input TYPE="TEXT" NAME="username" autofocus>
@@ -75,9 +76,7 @@
 				<input id="submit_btn" type="submit" name="signin" value="Sign in" style="background-color:black; color:white; border:0; font-size:14px; margin-top:15px;">
 				<input id="signup_btn" type="submit" name="signup" value="Sign up" />			
 			</form>
-			<p style="text-align:center; font-size:12px; margin-top:25px;"><i class="fa fa-unlock"></i><span> Version non sécurisé</span></p>
 			
-			<jsp:include page="/WEB-INF/messageErreur.jsp" />
 			<!-- <%= DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, Locale.CANADA_FRENCH).format(new java.util.Date()) %> -->
 		</div>
 	</div>

@@ -13,10 +13,10 @@ public class TableUsers
     public TableUsers(Connexion cx) throws SQLException
     {
         this.cx = cx;
-        stmtExiste = cx.getConnection().prepareStatement("SELECT userid, username FROM users WHERE username = ?");
-        stmtVerifyCredential = cx.getConnection().prepareStatement("SELECT userid, username FROM users WHERE username = ? AND password = ?");
-        stmtInsert = cx.getConnection().prepareStatement("INSERT INTO users (nom, prenom, username, password, adresse, codepostal) VALUES (?,?,?,?,'123 rue allo','A1A1A1')");
-        stmtDelete = cx.getConnection().prepareStatement("DELETE FROM users WHERE userid = ?");
+        stmtExiste = cx.getConnection().prepareStatement("SELECT userid, username FROM users_secured WHERE username = ?");
+        stmtVerifyCredential = cx.getConnection().prepareStatement("SELECT userid, username FROM users_secured WHERE username = ? AND password = ?");
+        stmtInsert = cx.getConnection().prepareStatement("INSERT INTO users_secured (nom, prenom, username, password) VALUES (?,?,?,?)");
+        stmtDelete = cx.getConnection().prepareStatement("DELETE FROM users_secured WHERE userid = ?");
     }
 
     public Connexion getConnexion()
@@ -65,14 +65,13 @@ public class TableUsers
         }
     }
 
-    public void addUser(String nom, String prenom, String username, String password, String password2, String adresse, String codepostal) throws SQLException
+    public void addUser(String nom, String prenom, String username, String password, String password2) throws SQLException
     {
         stmtInsert.setString(1, nom);
         stmtInsert.setString(2, prenom);
         stmtInsert.setString(3, username);
         stmtInsert.setString(4, password);
-        //stmtInsert.setString(5, adresse);
-        //stmtInsert.setString(6, codepostal);
+        
         stmtInsert.executeUpdate();
     }
 

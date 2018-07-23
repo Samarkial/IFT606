@@ -3,6 +3,8 @@ package tryToHackServlet;
 import java.sql.*;
 import java.util.*;
 import java.io.*;
+import java.security.MessageDigest;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -30,7 +32,32 @@ public class Login extends HttpServlet
             String isRegistering = new String();
 
             String username = request.getParameter("username");
-            String motDePasse = request.getParameter("password");
+            String encryptedPassword = null;
+            
+            { // Encryption password
+	            
+	            try {
+
+	                MessageDigest md = MessageDigest.getInstance("MD5");
+	                
+	                md.update(request.getParameter("password").getBytes());
+
+	                byte[] bytes = md.digest();
+
+	                StringBuilder sb = new StringBuilder();
+	                for(int i=0; i< bytes.length ;i++)
+	                {
+	                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+	                }
+
+	                encryptedPassword = sb.toString();
+	            }
+	            catch (Exception e)
+	            {
+	                e.printStackTrace();
+	            }
+	            System.out.println("Password encrypted: " + encryptedPassword);
+	        }
 
             System.out.println("Login: session id=" + session.getId());
             
@@ -41,7 +68,7 @@ public class Login extends HttpServlet
             GestionApplication AppUpdate = new GestionApplication();
             session.setAttribute("AppUpdate", AppUpdate);
             
-            if(username == null && motDePasse == null) {
+            if(username == null && encryptedPassword == null) {
             		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
                 dispatcher.forward(request, response);
                 
@@ -53,7 +80,7 @@ public class Login extends HttpServlet
 	    			System.out.println("--> Switching to sign up form");
 	    			
 	    			username = "";
-	    			motDePasse = "";
+	    			encryptedPassword = "";
 	    			
 	    			isRegistering = "true";
 	    	        request.setAttribute("isRegistering", isRegistering);
@@ -61,16 +88,14 @@ public class Login extends HttpServlet
 	    	        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 	            dispatcher.forward(request, response);
 	        
-			}else if(username != "" && motDePasse != "") {
-            		System.out.println("--> Verifying credentials");
-            		
+			}else if(username != "" && encryptedPassword != "") {
         			isRegistering = "false";
         	        request.setAttribute("isRegistering", isRegistering);
             		
-            		verifyCredentials(username, motDePasse, request, response);
+            		verifyCredentials(username, encryptedPassword, request, response);
             		session.setAttribute("etat", new Integer(Constantes.CONNECTE));
             		
-            }else if(username == "" || motDePasse == "") {
+            }else if(username == "" || encryptedPassword == "") {
         		
             		throw new TryToHackException("");
             	
