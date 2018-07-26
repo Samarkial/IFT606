@@ -124,8 +124,10 @@ public class Register extends HttpServlet
 			}
 			
 			if(res) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
-	            dispatcher.forward(request, response);
+				request.setAttribute("currentUser", username);
+				//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+				//dispatcher.forward(request, response);
+				response.sendRedirect("Accueil");
 	            session.setAttribute("etat", new Integer(Constantes.CONNECTE));
 			}else {
 				throw new TryToHackException("");

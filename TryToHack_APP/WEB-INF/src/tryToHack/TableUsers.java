@@ -7,14 +7,16 @@ public class TableUsers
     private PreparedStatement stmtExiste;
     private PreparedStatement stmtInsert;
     private PreparedStatement stmtDelete;
-    private PreparedStatement stmtVerifyCredential;
+    
+    private Statement stmtVerifyCredential;
+    
     private Connexion cx;
 
     public TableUsers(Connexion cx) throws SQLException
     {
         this.cx = cx;
         stmtExiste = cx.getConnection().prepareStatement("SELECT username FROM users WHERE username = ?");
-        stmtVerifyCredential = cx.getConnection().prepareStatement("SELECT userid, username FROM users WHERE username = ? AND password = ?");
+        stmtVerifyCredential = cx.getConnection().createStatement();
         stmtInsert = cx.getConnection().prepareStatement("INSERT INTO users (nom, prenom, username, password) VALUES (?,?,?,?)");
         stmtDelete = cx.getConnection().prepareStatement("DELETE FROM users WHERE userid = ?");
     }
@@ -35,10 +37,9 @@ public class TableUsers
 
     public boolean verifyCredentials(String username, String password) throws SQLException
     {
-    		stmtVerifyCredential.setString(1, username);
-    		stmtVerifyCredential.setString(2, password);
+    		String requeteVerifyCredential = "SELECT userid FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
         
-    		ResultSet rset = stmtVerifyCredential.executeQuery();
+    		ResultSet rset = stmtVerifyCredential.executeQuery(requeteVerifyCredential);
         boolean res = rset.next();
         rset.close();
         

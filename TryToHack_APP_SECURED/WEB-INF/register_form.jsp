@@ -58,6 +58,11 @@
 				text-decoration: underline;
 			}
 			
+			input.disabled {
+		    		pointer-events:none;
+			    	background-color:rgba(0,0,0,0.6) !important;
+			}
+			
 		</style>
 	</head>
 	
@@ -83,17 +88,18 @@
 			    <p style="width:49%; float:left;">Password* <span  id="label" style="float:right; padding:0 6px; border-radius:3px; color:white;"></span></p>
 			    <p style="width:49%; float:right;">Confirm password*</p>
 			    <input id="txtNewPassword"  style="width:49%; float:left;" TYPE="password" NAME="password" onkeyup="validatePassword(this.value);"/>
-			    <input id="txtConfirmPassword" style="width:49%; float:right;" TYPE="password" NAME="password_confirm" onblur="checkPasswordMatch();"/>
+			    <input id="txtConfirmPassword" style="width:49%; float:right;" TYPE="password" NAME="password_confirm" onkeyup="checkPasswordMatch();"/>
 			    
 				<p id="matchLabel" style="font-size:10px; color:#d9534f;"></p>
-			    <!-- <p style="width:49%; float:left;">Address</p>
-			    <p style="width:49%; float:right;">Postal code</p>
-			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="address">
-			    <input style="width:49%; float:right;" TYPE="TEXT" NAME="codepostal"> -->
 
-				<input id="submit_btn" type="submit" name="signup" value="Sign up" style="background-color:black; color:white; border:0; font-size:14px; margin-top:15px;">
+				<input id="submit_btn" class="disabled" type="submit" name="signup" value="Sign up" style="background-color:black; color:white; border:0; font-size:14px; margin-top:15px;">
 			
 			</form>
+			
+			<p style="font-size:10px; margin-top:15px;"><span><b>Your password must have:</b></span></p>
+			<p id="8orMore" style="font-size:10px; margin-top:5px;"><i class="fa fa-check-circle"></i><span> 8 or more characters</span></p>
+			<p id="1uppercase" style="font-size:10px; margin-top:5px;"><i class="fa fa-check-circle"></i><span> Upper & lowercase letters</span></p>
+			<p id="1number" style="font-size:10px; margin-top:5px;"><i class="fa fa-check-circle"></i><span> At least one number</span></p>
 			
 			<!--<p style="text-align:center; font-size:10px; margin-top:25px;"><i class="fa fa-lock"></i><span> Version sécurisé</span></p>
 			 <jsp:include page="/WEB-INF/messageErreur.jsp" />
@@ -102,11 +108,53 @@
 	</div>
 	
 	<script>
+	
+			var eightOrMore = false;
+			var uppercase = false;
+			var number = false;
+			
             function validatePassword(password) {
-                
+            	
                 if (password.length === 0) {
                     document.getElementById("label").innerHTML = "";
+                    
+                    var element = document.getElementById("submit_btn");
+                    element.classList.add("disabled");
+                    
+                    document.getElementById("8orMore").style.color = "#6A6D70";
+                    eightOrMore = false;
+                    
+                    document.getElementById("1uppercase").style.color = "#6A6D70";
+            			uppercase = false;
+            			
+            			document.getElementById("1number").style.color = "#6A6D70";
+                		number = false;
+                    
                     return;
+                }
+                
+                if (password.length >= 8) {
+                    document.getElementById("8orMore").style.color = "#5cb85c";
+                    eightOrMore = true;
+                }else{
+                    document.getElementById("8orMore").style.color = "#6A6D70";
+                    eightOrMore = false;
+                }
+                
+                if(/[A-Z]/.test(password)){
+                    document.getElementById("1uppercase").style.color = "#5cb85c";
+                    uppercase = true;
+                }else{
+                		document.getElementById("1uppercase").style.color = "#6A6D70";
+                		uppercase = false;
+                }
+                
+                if(/[0-9]/.test(password)){
+                    document.getElementById("1number").style.color = "#5cb85c";
+                    number = true;
+                }else{
+                		document.getElementById("1number").style.color = "#6A6D70";
+                		number = false;
                 }
 
                 var alphabet = new Array();
@@ -148,10 +196,17 @@
                 var password = document.getElementById("txtNewPassword").value;
                 var confirmPassword = document.getElementById("txtConfirmPassword").value;
 
-                if (password != confirmPassword)
+                if (password != confirmPassword && eightOrMore == true && uppercase == true && number == true){
                 		document.getElementById("matchLabel").innerHTML = "The passwords you entered do not match.";
-                else
-                		document.getElementById("matchLabel").innerHTML = "";
+                		
+                		var element = document.getElementById("submit_btn");
+                     element.classList.add("disabled");
+                }else{
+            			document.getElementById("matchLabel").innerHTML = "";
+            			
+                    var element = document.getElementById("submit_btn");
+                    element.classList.remove("disabled");
+                }
                 		
             }
             

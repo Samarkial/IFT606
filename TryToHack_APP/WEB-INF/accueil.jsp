@@ -83,6 +83,21 @@
 		</div>
 		<div class="wrapper">
 			<h2>Accueil</h2>
+
+				<%
+				if(request.getAttribute("currentUser") != null){
+				%>
+				<!-- <script>alert("Hacked")</script> -->
+			    <p style="font-size:14px; color:#d9534f; text-align:center;">
+			    Bonjour 
+				<%=
+					(String)request.getAttribute("currentUser")
+				%>
+			    </p>
+			    <%
+			    }
+				%>
+
 		</div>
 		
 		<div class="copyright">
