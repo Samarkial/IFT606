@@ -1,4 +1,5 @@
 <%@ page import="java.util.*,java.text.*" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <html>
@@ -103,7 +104,23 @@
 			    float: left;
 			    color: #999;
 			}
+			.content {
+				height: 100%;
+				overflow: auto;
+				border: 1px solid w3-light-grey;
+			}
+
+			.txtInput {				
+				border: 2px solid #dedede;
+			    background-color: #f1f1f1;
+			    border-radius: 5px;
+			    padding: 10px;
+			    margin: 10px 0;
+			    width: 100%;
+			}
 		</style>
+		
+		<script type="text/javascript" src="scripts/chat.js"></script>
 	</head>
 
 	<body>
@@ -148,31 +165,11 @@
 			</div>
 			<div class="box2">
 				<h2>Messages</h2>
-		
-				<div class="container">
-				  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-				  <p>Hello. How are you today?</p>
-				  <span class="time-right">11:00</span>
-				</div>
-		
-				<div class="container darker">
-				  <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
-				  <p>Hey! I'm fine. Thanks for asking!</p>
-				  <span class="time-left">11:01</span>
-				</div>
-		
-				<div class="container">
-				  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-				  <p>Sweet! So, what do you wanna do today?</p>
-				  <span class="time-right">11:02</span>
-				</div>
-		
-				<div class="container darker">
-				  <img src="/w3images/avatar_g2.jpg" alt="Avatar" style="width:100%;">
-				  <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-				  <span class="time-left">11:05</span>
-				</div>
-		
+				<div id="content" class="content"></div>
+					<div>
+						<textarea id="txtInput" class="txtInput" onkeyup="chat.dokeyup(event);" placeholder="Message"></textarea>
+					</div>
+					<input id="btnEnvoyer" type="button" value="Envoyer" onclick="chat.dosendbtn();" /> 
 			</div>
 		</div>
 	</body>
