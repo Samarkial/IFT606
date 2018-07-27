@@ -1,14 +1,14 @@
 // 
 //Source: https://github.com/benbai123/JSP_Servlet_Practice 
 //
-// XSS TEST	:	<img src=x onerror="alert('Try to hack - XSS');"
-//
-
 window.chat = {};
 
 // post to send message to chat.do
 chat.sendMsg = function(msg) {
 	var request;
+
+	 msg = msg.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g,
+	 '&gt;').replace(/"/g, '&quot;').replace(/\n/g, '<br />');
 
 	if (request = this.getXmlHttpRequest()) {
 		request.open('POST', 'Accueil?action=send&msg=' + msg + '&time='
