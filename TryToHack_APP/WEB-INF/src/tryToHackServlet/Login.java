@@ -125,7 +125,12 @@ public class Login extends HttpServlet
 			
 			if(res) {
 
-	             request.setAttribute("currentUser", username);
+				Map<String, List<String>> chat = Accueil.getChatMap();
+		        synchronized (chat) {
+		            chat.put(username, new ArrayList());
+		        }
+				
+	             request.getSession().setAttribute("currentUser", username);
 				
 	           //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
 				//dispatcher.forward(request, response);
