@@ -19,7 +19,6 @@ public class Accueil extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-    		System.out.println("ACCUEIL");
         // verification de l'état de la session
         HttpSession session = request.getSession();
         Integer etat = (Integer) session.getAttribute("etat");
