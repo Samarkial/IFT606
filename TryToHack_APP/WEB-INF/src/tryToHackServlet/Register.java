@@ -24,10 +24,16 @@ public class Register extends HttpServlet
 	        String motDePasse = request.getParameter("password");
 	        String motDePasse2 = request.getParameter("password_confirm");
 	        
-	        if(nom != "" && prenom != "" && username != "" && motDePasse != "" && motDePasse2 != "" ) {
+	        System.out.println("Nom: " + nom);
+	        System.out.println("Prenom: " + prenom);
+	        System.out.println("Username: " + username);
+	        System.out.println("Password: " + motDePasse);
+	        System.out.println("Password confrim: " + motDePasse2);
+	        
+	        if(nom != "" && prenom != "" && username != "" && motDePasse != "" && motDePasse2 != "") {
 	        		doRegister(nom, prenom, username, motDePasse, motDePasse2, request, response);
 	        } else {
-	        		throw new TryToHackException("");
+	        		throw new TryToHackException("ERROR");
 	        }
 	        
     		}catch (TryToHackException e){
@@ -57,12 +63,6 @@ public class Register extends HttpServlet
 		try {
 			
 			HttpSession session = request.getSession();
-
-			System.out.println("Nom: " + nom);
-	        System.out.println("Prenom: " + prenom);
-	        System.out.println("Username: " + username);
-	        System.out.println("Password: " + password);
-	        System.out.println("Password confrim: " + password2);
 	        
 	        if(!password.equals(password2)) {
 	        	

@@ -77,13 +77,13 @@
 
 				<p style="width:49%; float:left;">Nom*</p>
 			    <p style="width:49%; float:right;">Prénom*</p>
-			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="nom" autofocus>
-				<input style="width:49%; float:right;" TYPE="TEXT" NAME="prenom">
+			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="nom" autofocus onkeyup="validateChar(this.value);">
+				<input style="width:49%; float:right;" TYPE="TEXT" NAME="prenom" onkeyup="validateChar(this.value);">
 
 			    <p style="width:49%; float:left;">Username*</p>
 			    <p style="width:49%; float:right;">Email*</p>
-			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="username">
-				<input style="width:49%; float:right;" TYPE="TEXT" NAME="email">
+			    <input style="width:49%; float:left;" TYPE="TEXT" NAME="username" onkeyup="validateChar(this.value);">
+				<input style="width:49%; float:right;" TYPE="TEXT" NAME="email" onkeyup="validateChar(this.value);">
 
 			    <p style="width:49%; float:left;">Password* <span  id="label" style="float:right; padding:0 6px; border-radius:3px; color:white;"></span></p>
 			    <p style="width:49%; float:right;">Confirm password*</p>
@@ -112,6 +112,26 @@
 			var eightOrMore = false;
 			var uppercase = false;
 			var number = false;
+			var wrongChar = false;
+			
+			function validateChar(input){
+				if(/[<>]/.test(input)){
+					wrongChar = true;
+				}else
+					wrongChar = false;
+				
+				if (wrongChar == true){
+	            		document.getElementById("matchLabel").innerHTML = "Character not allowed.";
+	            		
+	            		var element = document.getElementById("submit_btn");
+	                 element.classList.add("disabled");
+	            }else{
+	        			document.getElementById("matchLabel").innerHTML = "";
+		    			
+		    			var element = document.getElementById("submit_btn");
+		             element.classList.remove("disabled");
+	            }
+			}
 			
             function validatePassword(password) {
             	
@@ -196,12 +216,12 @@
                 var password = document.getElementById("txtNewPassword").value;
                 var confirmPassword = document.getElementById("txtConfirmPassword").value;
 
-                if (password != confirmPassword && eightOrMore == true && uppercase == true && number == true){
+                if (password != confirmPassword && eightOrMore == true && uppercase == true && number == true && wrongChar != true){
                 		document.getElementById("matchLabel").innerHTML = "The passwords you entered do not match.";
                 		
                 		var element = document.getElementById("submit_btn");
                      element.classList.add("disabled");
-                }else{
+                }else if(eightOrMore == true && uppercase == true && number == true && wrongChar != true){
             			document.getElementById("matchLabel").innerHTML = "";
             			
                     var element = document.getElementById("submit_btn");
@@ -209,6 +229,13 @@
                 }
                 		
             }
+            
+            if(eightOrMore == true && uppercase == true && number == true && wrongChar == false){
+	    			document.getElementById("matchLabel").innerHTML = "";
+	    			
+	    			var element = document.getElementById("submit_btn");
+	             element.classList.remove("disabled");
+	        }
             
         </script>
 </html>

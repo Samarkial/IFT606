@@ -25,6 +25,12 @@ public class Register extends HttpServlet
             String encryptedPassword = null;
             String encryptedPassword2 = null;
             
+            System.out.println("Nom: " + nom);
+	        System.out.println("Prenom: " + prenom);
+	        System.out.println("Username: " + username);
+	        System.out.println("Password: " + encryptedPassword);
+	        System.out.println("Password confrim: " + encryptedPassword2);
+            
 	        { // Encryption password
 	            
 	            try {
@@ -93,12 +99,6 @@ public class Register extends HttpServlet
 		try {
 			
 			HttpSession session = request.getSession();
-
-			System.out.println("Nom: " + nom);
-	        System.out.println("Prenom: " + prenom);
-	        System.out.println("Username: " + username);
-	        System.out.println("Password: " + password);
-	        System.out.println("Password confrim: " + password2);
 	        
 	        if(!password.equals(password2)) {
 	        	
@@ -140,7 +140,7 @@ public class Register extends HttpServlet
 
 		} catch (TryToHackException e) {
 			List<String> listeMessageErreur = new LinkedList<String>();
-			listeMessageErreur.add("This username address is not available.");
+			listeMessageErreur.add("This username is not available.");
 			request.setAttribute("listeMessageErreur", listeMessageErreur);
 			
 			String isRegistering = new String();
