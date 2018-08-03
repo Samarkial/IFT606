@@ -10,8 +10,9 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		
+
 		<script type="text/javascript" src="scripts/chat.js"></script>
+		<script type="text/javascript" src="scripts/email.js"></script>
 		
 		<style>
 			body {margin:0;}
@@ -106,7 +107,6 @@
 			    float: left;
 			    color: #999;
 			}
-			
 			.content {
 				height: 100%;
 				overflow: auto;
@@ -122,9 +122,10 @@
 			    width: 100%;
 			}
 		</style>
+		
 	</head>
 
-	<body onload="startListen();">
+	<body>
 		<div class="icon-bar">
 		  <a href="#"><i class="fa fa-user"></i></a> 
 		  <a href="#"><i class="fa fa-search"></i></a> 
@@ -136,31 +137,44 @@
 			<div class="box1">
 				<input type="file" name="img" multiple>
 				<div class="sendMessage">
-				  <form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+				  <form class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
 					 
 					<div class="w3-row w3-section">
 					  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
 					    <div class="w3-rest">
-					      <input class="w3-input w3-border" name="first" type="text" placeholder="Email destinataire">
+					      <input id="emailDest" class="w3-input w3-border" name="first" type="text" placeholder="Email destinataire">
 					    </div>
 					</div>
 		
 					<div class="w3-row w3-section">
 					  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
 					    <div class="w3-rest">
-					      <input class="w3-input w3-border" name="last" type="text" placeholder="Email emmetteur">
+					      <input id="emailSender" class="w3-input w3-border" name="last" type="text" placeholder="Gmail emmetteur">
+					    </div>
+					</div>
+
+					<div class="w3-row w3-section">
+						<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-key"></i></div>
+						  <div class="w3-rest">
+							<input id="emailSenderPsw" class="w3-input w3-border" name="last" type="password" placeholder="FakePSW">
+						  </div>
+					  </div>
+					
+					<div class="w3-row w3-section">
+					  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil-square-o"></i></div>
+					    <div class="w3-rest">
+					      <input placeholder="Subject" id="emailSubject" class="w3-input w3-border" name="last"></textarea>
 					    </div>
 					</div>
 		
 					<div class="w3-row w3-section">
 					  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
 					    <div class="w3-rest">
-					      <input class="w3-input w3-border" name="message" type="text" placeholder="Message">
+					      <input id="emailMsg" class="w3-input w3-border" name="message" type="text" placeholder="Message">
 					    </div>
 					</div>
 		
-					<button class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Send</button>
-		
+					<button type="submit" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" onclick="email.dosendbtn();" >Send</button>
 					</form>
 				</div>
 			</div>
@@ -168,9 +182,9 @@
 				<h2>Messages</h2>
 				<div id="content" class="content"></div>
 					<div>
-						<textarea id="txtInput" class="txtInput" onkeyup="dokeyup(event);" placeholder="Message"></textarea>
+						<textarea id="txtInput" class="txtInput" onkeyup="chat.dokeyup(event);" placeholder="Message"></textarea>
 					</div>
-					<input id="btnEnvoyer" type="button" value="Envoyer" onclick="sendBtn();" /> 
+					<input id="btnEnvoyer" type="button" value="Envoyer" onclick="chat.dosendbtn();" /> 
 			</div>
 		</div>
 	</body>
