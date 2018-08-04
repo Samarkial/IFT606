@@ -1,5 +1,3 @@
-// 
-// Source: https://github.com/benbai123/JSP_Servlet_Practice 
 //
 // XSS TEST	:	<img src=x onerror="alert('Try to hack - XSS');"
 //
