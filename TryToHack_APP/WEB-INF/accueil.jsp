@@ -124,6 +124,7 @@
 			
 			.box2{
 				border:1px solid #dedede;
+				padding:15px;
 			}
 		</style>
 		
@@ -131,10 +132,10 @@
 
 	<body onload="startListen();">
 		<div class="icon-bar">
-		  <a href="#"><i class="fa fa-user"></i></a> 
+		  <a class="disabled" href="#"><i class="fa fa-user"></i></a> 
 		  <a href="#"><i class="fa fa-search"></i></a> 
 		  <a href="#"><i class="fa fa-envelope"></i></a> 
-		  <a href="#"><i class="fa fa-address-book"></i></a>
+		  <a href="Test" style="font-size:18px; line-height:36px; text-decoration:none;">Login as admin</a>
 		  <a href="Logout"><i class="fa fa-sign-out"></i></a> 
 		</div>
 		<div id="mainFrame">

@@ -124,6 +124,7 @@
 			
 			.box2{
 				border:1px solid #dedede;
+				padding:15px;
 			}
 		</style>
 		

@@ -40,32 +40,10 @@
     <servlet-name>Register</servlet-name>
     <servlet-class>tryToHackServlet.Register</servlet-class>
  </servlet>
- <!--     <servlet>
-    <servlet-name>Testservlet</servlet-name>
-    <servlet-class>test.Testservlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-		<servlet-name>TestServlet</servlet-name>
-		<url-pattern>/test</url-pattern>
-	</servlet-mapping>
- <security-constraint>
-		<web-resource-collection>
-			<web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
-			<url-pattern>/*</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>tomcat</role-name>
-		</auth-constraint>
-
-		<user-data-constraint>
-			<transport-guarantee>NONE</transport-guarantee>
-		</user-data-constraint>
- </security-constraint>
- <login-config>
-		<auth-method>BASIC</auth-method>
-</login-config> -->
+  <servlet>
+    <servlet-name>TestServlet</servlet-name>
+    <servlet-class>tryToHackServlet.TestServlet</servlet-class>
+ </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
@@ -82,4 +60,15 @@
     <servlet-name>Register</servlet-name>
     <url-pattern>/Register</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>/Test</url-pattern>
+  </servlet-mapping>
+  
+  <security-role>
+        <role-name>manager</role-name>
+  </security-role>
+  <security-role>
+        <role-name>user</role-name>
+  </security-role>
 </web-app>
