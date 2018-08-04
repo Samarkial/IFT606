@@ -39,8 +39,8 @@
   <servlet>
     <servlet-name>Register</servlet-name>
     <servlet-class>tryToHackServlet.Register</servlet-class>
-  </servlet>
-    <servlet>
+ </servlet>
+ <!--     <servlet>
     <servlet-name>Testservlet</servlet-name>
     <servlet-class>test.Testservlet</servlet-class>
   </servlet>
@@ -60,13 +60,12 @@
 		</auth-constraint>
 
 		<user-data-constraint>
-			<!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
 			<transport-guarantee>NONE</transport-guarantee>
 		</user-data-constraint>
  </security-constraint>
  <login-config>
 		<auth-method>BASIC</auth-method>
-</login-config>
+</login-config> -->
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>

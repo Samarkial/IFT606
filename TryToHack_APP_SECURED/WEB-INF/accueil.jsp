@@ -121,6 +121,10 @@
 			    margin: 10px 0;
 			    width: 100%;
 			}
+			
+			.box2{
+				border:1px solid #dedede;
+			}
 		</style>
 		
 	</head>
@@ -181,7 +185,7 @@
 			<div class="box2">
 				<h2>Messages</h2>
 				<div id="content" class="content"></div>
-					<div>
+					<div style="margin-top: -50px;">
 						<textarea id="txtInput" class="txtInput" onkeyup="chat.dokeyup(event);" placeholder="Message"></textarea>
 					</div>
 					<input id="btnEnvoyer" type="button" value="Envoyer" onclick="chat.dosendbtn();" /> 

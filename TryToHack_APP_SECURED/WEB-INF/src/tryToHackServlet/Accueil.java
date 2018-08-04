@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.SimpleEmail;
+
 import net.sf.json.JSONArray;
 
 public class Accueil extends HttpServlet
@@ -37,8 +41,7 @@ public class Accueil extends HttpServlet
     // message map, mapping user UID with a message list
  	private static Map<String, List<String>> _chat = new HashMap<String, List<String>>();
     
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
     	request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
@@ -76,38 +79,38 @@ public class Accueil extends HttpServlet
 					}
 				}
 			}
-
-			else if ("email".equals(action)){
-				System.out.println(action);
-				String user = (String) request.getSession().getAttribute("currentUser");
-				if (user == null)
-					response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-				else {
-					String sender = new String(request.getParameter("sender").getBytes("ISO-8859-1"), "UTF-8");
-					String senderPSW = new String(request.getParameter("senderPSW").getBytes("ISO-8859-1"), "UTF-8");
-					String receiver = new String(request.getParameter("receiver").getBytes("ISO-8859-1"), "UTF-8");
-					String subject = new String(request.getParameter("subject").getBytes("ISO-8859-1"), "UTF-8");
-					String message = new String(request.getParameter("message").getBytes("ISO-8859-1"), "UTF-8");
-					System.out.println(sender + receiver + subject + message);
-					try {
-						Email email = new SimpleEmail();
-						email.setHostName("smtp.gmail.com");
-						email.setSmtpPort(465);
-						email.setAuthenticator(new DefaultAuthenticator(sender, senderPSW));
-						email.setSSLOnConnect(true);
-						email.setFrom(sender);
-						email.setSubject(subject);
-						email.setMsg(message);
-						email.addTo(receiver);
-						email.send();
-					}catch(Exception ex){
-						System.out.println("Unable to send email");
-						System.out.println(ex);
-					}
+		}
+		else if ("email".equals(action)){
+			System.out.println(action);
+			String user = (String) request.getSession().getAttribute("currentUser");
+			if (user == null)
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			else {
+				String sender = new String(request.getParameter("sender").getBytes("ISO-8859-1"), "UTF-8");
+				String senderPSW = new String(request.getParameter("senderPSW").getBytes("ISO-8859-1"), "UTF-8");
+				String receiver = new String(request.getParameter("receiver").getBytes("ISO-8859-1"), "UTF-8");
+				String subject = new String(request.getParameter("subject").getBytes("ISO-8859-1"), "UTF-8");
+				String message = new String(request.getParameter("message").getBytes("ISO-8859-1"), "UTF-8");
+				System.out.println(sender + receiver + subject + message);
+				try {
+					Email email = new SimpleEmail();
+					email.setHostName("smtp.gmail.com");
+					email.setSmtpPort(465);
+					email.setAuthenticator(new DefaultAuthenticator(sender, senderPSW));
+					email.setSSLOnConnect(true);
+					email.setFrom(sender);
+					email.setSubject(subject);
+					email.setMsg(message);
+					email.addTo(receiver);
+					email.send();
+				}catch(Exception ex){
+					System.out.println("Unable to send email");
+					System.out.println(ex);
 				}
 			}
 		}
-    }
+	}
+    
     
     public static Map<String, List<String>> getChatMap() {
 		return _chat;

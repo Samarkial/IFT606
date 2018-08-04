@@ -42,5 +42,8 @@
 	<classpathentry kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/base_code/TryToHack_APP/WEB-INF/lib/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/base_code/TryToHack_APP/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/base_code/TryToHack_APP/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/base_code/TryToHack_APP/WEB-INF/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/base_code/TryToHack_APP/WEB-INF/lib/commons-email-1.4.jar"/>
+	<classpathentry kind="lib" path="/Users/kevinboisvert/Desktop/UdeS/UdeS - Session04/IFT606/02-TSession/base_code/TryToHack_APP/WEB-INF/lib/javax.mail-1.5.1.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>
