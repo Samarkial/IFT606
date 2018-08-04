@@ -25,6 +25,19 @@
     <listener-class>tryToHackServlet.ContextListener</listener-class>
   </listener>
   <servlet>
+       <servlet-name>listing</servlet-name>
+       <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+       <init-param>
+           <param-name>debug</param-name>
+           <param-value>0</param-value>
+       </init-param>
+       <init-param>
+           <param-name>listings</param-name>
+           <param-value>true</param-value>
+       </init-param>
+       <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>tryToHackServlet.Login</servlet-class>
   </servlet>
@@ -44,6 +57,10 @@
     <servlet-name>TestServlet</servlet-name>
     <servlet-class>tryToHackServlet.TestServlet</servlet-class>
  </servlet>
+  <servlet-mapping>
+    <servlet-name>listing</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
