@@ -38,27 +38,25 @@ public class Accueil extends HttpServlet
         
     }
 
-    // message map, mapping user UID with a message list
- 	private static Map<String, List<String>> _chat = new HashMap<String, List<String>>();
-    
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-    	request.setCharacterEncoding("UTF-8");
+    private static Map<String, List<String>> _chat = new HashMap<String, List<String>>();
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
-		// send message
 		if ("send".equals(action)) {
-			// get param with UTF-8 enconding
 			String msg = new String(request.getParameter("msg").getBytes("ISO-8859-1"), "UTF-8");
-			String user = (String) request.getSession().getAttribute("currentUser");
-			for (String s : _chat.keySet()) {
-				if (!s.equals(user)) {
-					synchronized (_chat.get(s)) {
-						// put message to any other user's msg list
-						_chat.get(s).add(user + " said: " + msg);
+			if (msg.length() > 0) {
+				String user = (String) request.getSession().getAttribute("currentUser");
+				for (String s : _chat.keySet()) {
+					if (!s.equals(user)) {
+						synchronized (_chat.get(s)) {
+							_chat.get(s).add(user + " dit: " + msg);
+						}
 					}
 				}
 			}
-		} else if ("get".equals(action)) { // get message
+
+		} else if ("get".equals(action)) {
 			String user = (String) request.getSession().getAttribute("currentUser");
 			if (user == null)
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
@@ -67,11 +65,9 @@ public class Accueil extends HttpServlet
 
 				synchronized (l) {
 					if (l.size() > 0) {
-						// for UTF-8 chars
 						response.setCharacterEncoding("UTF-8");
 						PrintWriter out = response.getWriter();
 						JSONArray jsna = new JSONArray();
-						// add all msg to json array and clear list
 						while (l.size() > 0)
 							jsna.add(l.remove(0));
 						out.println(jsna);
@@ -79,8 +75,7 @@ public class Accueil extends HttpServlet
 					}
 				}
 			}
-		}
-		else if ("email".equals(action)){
+		} else if ("email".equals(action)){
 			System.out.println(action);
 			String user = (String) request.getSession().getAttribute("currentUser");
 			if (user == null)

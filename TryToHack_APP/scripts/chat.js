@@ -1,5 +1,3 @@
-// 
-// Source: https://github.com/benbai123/JSP_Servlet_Practice 
 //
 // XSS TEST	:	<img src=x onerror="alert('Try to hack - XSS');"
 //
@@ -99,9 +97,3 @@ function getXmlHttpRequest() {
 		throw new Error('XMLHttpRequest not supported');
 	}
 };
-
-function escapeHTML(str) {
-	return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g,
-			'&gt;').replace(/\"/g, '&quot;').replace(/\'/g, '&#x27;').replace(
-			/\//g, '&#x2F;').replace(/\//g, '&#x2F;');
-}

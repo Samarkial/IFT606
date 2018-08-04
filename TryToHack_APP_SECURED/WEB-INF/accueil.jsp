@@ -129,7 +129,7 @@
 		
 	</head>
 
-	<body>
+	<body onload="startListen();">
 		<div class="icon-bar">
 		  <a href="#"><i class="fa fa-user"></i></a> 
 		  <a href="#"><i class="fa fa-search"></i></a> 
@@ -185,10 +185,10 @@
 			<div class="box2">
 				<h2>Messages</h2>
 				<div id="content" class="content"></div>
-					<div style="margin-top: -50px;">
-						<textarea id="txtInput" class="txtInput" onkeyup="chat.dokeyup(event);" placeholder="Message"></textarea>
-					</div>
-					<input id="btnEnvoyer" type="button" value="Envoyer" onclick="chat.dosendbtn();" /> 
+				<div>
+					<textarea id="txtInput" class="txtInput" onkeyup="dokeyup(event);" placeholder="Message"></textarea>
+				</div>
+				<input id="btnEnvoyer" type="button" value="Envoyer" onclick="sendBtn();" />
 			</div>
 		</div>
 	</body>
