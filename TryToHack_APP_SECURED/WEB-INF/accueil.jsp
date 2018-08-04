@@ -186,9 +186,9 @@
 				<h2>Messages</h2>
 				<div id="content" class="content"></div>
 					<div style="margin-top: -50px;">
-						<textarea id="txtInput" class="txtInput" onkeyup="chat.dokeyup(event);" placeholder="Message"></textarea>
+						<textarea id="txtInput" class="txtInput" onkeyup="dokeyup(event);" placeholder="Message"></textarea>
 					</div>
-					<input id="btnEnvoyer" type="button" value="Envoyer" onclick="chat.dosendbtn();" /> 
+					<input id="btnEnvoyer" type="button" value="Envoyer" onclick="dosendbtn();" /> 
 			</div>
 		</div>
 	</body>
